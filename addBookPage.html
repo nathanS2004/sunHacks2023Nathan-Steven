@@ -6,6 +6,41 @@
     <title>Add_Book</title>
 </head>
 <body>
+    <div class="input-container">
+      <div>
+        <label for="bookTitleInput">Enter book title:  </label>
+        <input type="text" id="bookTitleInput">
+      </div>
+        
+      <div>
+        <label for="bookTitleInput">Enter books author:</label>
+        <input type="text" id="bookAuthorInput">
+      </div>
+      
+      <div>
+        <label for="bookTitleInput">Publication date:</label>
+        <input type="text" id="bookPublicationInput">
+      </div>
+        <p class="output" id="out1"></p>
+        <input type="button" id="b1" value="add to info box">
+    </div>
+    <div id="result"></div>
+    <script>
+        const t1=document.getElementById('bookTitleInput');
+        const button1=document.getElementById('b1');
+        const o1=document.getElementById('out1');
+        var arrTitle=[];
+        function outputter1(){
+            o1.innerHTML=t1.value;
+            arrTitle.push(t1);
+            console.log(arrTitle);
+        }
+        button1.addEventListener('click', outputter1);
+        
+        
+         
     
+        
+    </script>
 </body>
 </html>
