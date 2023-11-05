@@ -21,28 +21,51 @@
             <label for="bookPublicationInput">Publication date:</label>
             <input type="text" id="bookPublicationInput">
         </div>
-        <p class="output" id="out1"></p>
-        <p class="output" id="out2"></p>
-        <p class="output" id="out3"></p>
-        <input type="button" id="b1" value="add to info box">
+
+        <input type="button" id="addBookButton" value="Add Book">
     </div>
     <div id="result"></div>
-    <script>
-        const t1 = document.getElementById('bookTitleInput');
-        const t2 = document.getElementById('bookAuthorInput');
-        const t3 = document.getElementById('bookPublicationInput');
-        const button1 = document.getElementById('b1');
-        const o1 = document.getElementById('out1');
-        const o2 = document.getElementById('out2');
-        const o3 = document.getElementById('out3');
 
-        function outputter1() {
-            o1.innerHTML = t1.value;
-            o2.innerHTML = t2.value;
-            o3.innerHTML = t3.value;
+    <script>
+        const books = [];
+
+        function addBookToLibrary(title, author, publicationDate) {
+            const book = {
+                title: title,
+                author: author,
+                publicationDate: publicationDate
+            };
+            books.push(book);
         }
 
-        button1.addEventListener('click', outputter1);
+        document.getElementById('addBookButton').addEventListener('click', function() {
+            const title = document.getElementById('bookTitleInput').value;
+            const author = document.getElementById('bookAuthorInput').value;
+            const publicationDate = document.getElementById('bookPublicationInput').value;
+
+            addBookToLibrary(title, author, publicationDate);
+
+            // Clear input fields
+            document.getElementById('bookTitleInput').value = '';
+            document.getElementById('bookAuthorInput').value = '';
+            document.getElementById('bookPublicationInput').value = '';
+
+            displayBooks();
+        });
+
+        function displayBooks() {
+            const result = document.getElementById('result');
+            result.innerHTML = '<h3>Books:</h3>';
+
+            books.forEach(book => {
+                result.innerHTML += `
+                    <p>Title: ${book.title}</p>
+                    <p>Author: ${book.author}</p>
+                    <p>Publication Date: ${book.publicationDate}</p>
+                    <hr>
+                `;
+            });
+        }
     </script>
 </body>
 </html>
