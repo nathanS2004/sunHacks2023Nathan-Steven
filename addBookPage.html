@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +30,7 @@
 
     <script>
         const books = [];
-
+        
         function addBookToLibrary(title, author, publicationDate) {
             const book = {
                 title: title,
@@ -36,6 +38,7 @@
                 publicationDate: publicationDate
             };
             books.push(book);
+            localStorage.setItem('books', JSON.stringify(books));
         }
 
         document.getElementById('addBookButton').addEventListener('click', function() {
@@ -44,12 +47,6 @@
             const publicationDate = document.getElementById('bookPublicationInput').value;
 
             addBookToLibrary(title, author, publicationDate);
-
-            // Clear input fields
-            document.getElementById('bookTitleInput').value = '';
-            document.getElementById('bookAuthorInput').value = '';
-            document.getElementById('bookPublicationInput').value = '';
-
             displayBooks();
         });
 
@@ -66,6 +63,7 @@
                 `;
             });
         }
+        
     </script>
 </body>
 </html>

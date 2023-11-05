@@ -6,14 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body background="book.jpg">
 
-    <a href="addBookPage.html">
+    <a href="addBookPage.html" src="forMainPage.js">
         <button id="addBookButton" >Add Book</button>
     </a>
+    <button id="displayBooksButton">Display All Books</button>
+
+    <div id="bookDetails"></div>
+    
 
     
     <h1></h1>
+    <script>
+        const storedBooks = JSON.parse(localStorage.getItem('books'));
+        const bookDetailsElement = document.getElementById('bookDetails');
+        const displayBooksButton = document.getElementById('displayBooksButton');
+        
+        function displayBookDetails() {
+                // Display the book details
+                bookDetailsElement.innerHTML = '';
+                storedBooks.forEach(book => {
+                    const bookDetails = `
+                        <p><strong>Title:</strong> ${book.title}</p>
+                        <p><strong>Author:</strong> ${book.author}</p>
+                        <p><strong>Publication Date:</strong> ${book.publicationDate}</p>
+                        <hr>
+                        
+                    `;
+                    bookDetailsElement.innerHTML += bookDetails;
+                    
+                });
+        }
+        displayBooksButton.addEventListener('click', displayBookDetails);
+
+        // Call displayAllBooks on page load
+        
+        // Check if the 'books' array exists in local storage
+        if (storedBooks) {
+            console.log('Books Array from Local Storage:');
+            console.log(storedBooks);
+        } else {
+            console.log('Books Array not found in Local Storage.');
+        }
+        // Retrieve the data from localStorage
+        
+
+    </script>
 </body>
-<script src="backend.js"></script>
+
+
 </html>
